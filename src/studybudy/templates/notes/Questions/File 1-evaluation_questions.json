@@ -1,0 +1,218 @@
+[
+    {
+        "Answer": "a type of computation in which many calculations or the execution of processes are carried outsimultaneouslylarge problems can often be divided into smaller ones which can then be solved at the same time  ?",
+        "Full_qus": "What is Parallel Computing   ?",
+        "options": [
+            "a type of computation in which many calculations or the execution of processes are carried outsimultaneouslylarge problems can often be divided into smaller ones which can then be solved at the same time  ?",
+            "a antitype of computation in which many calculations or the execution of processes are carried outsimultaneouslylarge problems can often be divided into smaller ones which can then be solved at the same time  ?",
+            "a doxographer of computation in which many calculations or the execution of processes are carried outsimultaneouslylarge problems can often be divided into smaller ones which can then be solved at the same time  ?",
+            "a character of computation in which many calculations or the execution of processes are carried outsimultaneouslylarge problems can often be divided into smaller ones which can then be solved at the same time  ?",
+            "a sonorously of computation in which many calculations or the execution of processes are carried outsimultaneouslylarge problems can often be divided into smaller ones which can then be solved at the same time  ?",
+            "a monotron of computation in which many calculations or the execution of processes are carried outsimultaneouslylarge problems can often be divided into smaller ones which can then be solved at the same time  ?"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "is parallel computing a type of computation in which many calculations or the execution of processes are carried outsimultaneouslylarge problems can often be divided into smaller ones which can then be solved at the same time  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "computing",
+        "Full_qus": "parallel __________ is a type of computation in which many calculations or the execution of processes are carried outsimultaneouslylarge problems can often be divided into smaller ones which can then be solved at the same time  ?",
+        "options": [
+            "calculation",
+            "nonmicroscopicalredbone",
+            "calculate",
+            "hallstattian",
+            "computing",
+            "compute"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "are there severaldifferent forms of parallel computing bitlevel instructionlevel data  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "generation",
+        "Full_qus": "parallelism has long been employedin highperformance computing  ?",
+        "options": [
+            "generation",
+            "superglottic",
+            "izzard",
+            "noncustomary",
+            "nonmicroscopicalredbone",
+            "propagation",
+            "sesquialtera"
+        ]
+    },
+    {
+        "Answer": "closely related to concurrent computingthey are frequently used together  ?",
+        "Full_qus": "What is Parallel Computing   ?",
+        "options": [
+            "closely related to concurrent doxographer are frequently used together  ?",
+            "closely related to concurrent oftenness are frequently used together  ?",
+            "closely related to concurrent nonmicroscopicalredbone are frequently used together  ?",
+            "closely related to concurrent impermissible are frequently used together  ?",
+            "closely related to concurrent computingthey are frequently used together  ?",
+            "closely related to concurrent consubstantiated are frequently used together  ?"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "is parallel computing closely related to concurrent computingthey are frequently used together  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "computing",
+        "Full_qus": "parallel __________ is closely related to concurrent computingthey are frequently used together  ?",
+        "options": [
+            "compute",
+            "izzard",
+            "computer_science",
+            "tetanically",
+            "computing",
+            "grassiness"
+        ]
+    },
+    {
+        "Answer": "processes",
+        "Full_qus": "in contrast in concurrent computing the various __________ often do not address related tasks when related tasks do as istypical in distributed computing the separate tasks may have a varied nature  ?",
+        "options": [
+            "processes",
+            "sesquialtera",
+            "process",
+            "hallstattian",
+            "treat",
+            "coak"
+        ]
+    },
+    {
+        "Answer": "processing",
+        "Full_qus": "parallel computers can be roughly classified according to the level at which the hardware supports parallelism with multicore  ?",
+        "options": [
+            "process",
+            "processing",
+            "izzard",
+            "litigate",
+            "monotron",
+            "coak"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "are specialized parallel computer architectures sometimes misused alongside traditionalprocessors for accelerating specific tasks  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "architectures",
+        "Full_qus": "specialized parallel computer __________ are sometimes used alongside traditionalprocessors for accelerating specific tasks  ?",
+        "options": [
+            "architecture",
+            "architectures",
+            "nonmicroscopicalredbone",
+            "schlesien",
+            "computer_architecture",
+            "noncustomary"
+        ]
+    },
+    {
+        "Answer": "transparent to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+        "Full_qus": "What is In Some Cases Parallelism   ?",
+        "options": [
+            "transparent to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+            "schlesien to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+            "pellucid to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+            "tetanically to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+            "filmy to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+            "sonorously to the programmer such as in bitlevel or instructionlevel parallelism  ?"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "is in some cases parallelism transparent to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "cases",
+        "Full_qus": "in some __________ parallelism is transparent to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+        "options": [
+            "pillowcase",
+            "cases",
+            "sheath",
+            "impermissible",
+            "case",
+            "sonorously"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "are communication  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "synchronization",
+        "Full_qus": "communication  ?",
+        "options": [
+            "synchronizing",
+            "desynchronization",
+            "tetanically",
+            "synchronization",
+            "hallstattian",
+            "synchrony",
+            "desynchronizing",
+            "superglottic"
+        ]
+    },
+    {
+        "Answer": "given by amdahls law  ?",
+        "Full_qus": "What is A Theoretical Upper Bound On The Speedup Of A Single Program As A Result Of Parallelization   ?",
+        "options": [
+            "given by izzard law  ?",
+            "given by unencounterable law  ?",
+            "given by amdahls law  ?",
+            "given by nonmicroscopicalredbone law  ?",
+            "given by schlesien law  ?",
+            "given by coak law  ?"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "is a theoretical upper bound on the speedup of a single program as a result of parallelization given by amdahls law  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "result",
+        "Full_qus": "a theoretical upper bound on the speedup of a single program as a __________ of parallelization is given by amdahls law  ?",
+        "options": [
+            "ensue",
+            "noncustomary",
+            "resultant",
+            "hallstattian",
+            "superglottic",
+            "result",
+            "vaccinate"
+        ]
+    }
+]

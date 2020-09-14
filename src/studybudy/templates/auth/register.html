@@ -1,0 +1,185 @@
+{% extends "base/register_base.html" %}
+{% load static %}
+    {%  block content %}
+        <div class="overlay"></div>
+
+        <section class="progress-path">
+            <div class="step-bar">
+                <ul id="progressbar" class="text-center">
+                    <li class="active">Welcome</li>
+                    <li>Personal Details</li>
+                    <li>Social Profiles</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="fieldset-area">
+            <form class="form-box">
+                <fieldset>
+                    <h1>SIGN UP</h1><hr>
+                    <p class="welcome-intro">
+                        This is the first step towards a path of enlightment and growth on a daily basis,
+                        and all you need is a little commitment and hard-work to make all your dreams come through.
+                    </p>
+                    <p class="category-info">
+                        We would like to know a little about you to set-up your own environment just as you want it.
+                        Please start by selecting which category you belong to
+                    </p>
+                    <div class="col-md-12 my-3 error text-center text-danger"></div>
+                    <div class="form-group">
+                        <label for="user-category">Choose a Category: </label>
+                        <select class="form-control user-category" id="usr-ctgry" required>
+                            <option value=""><!---choose-----></option>
+                            <option value="student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-outline-success registerBtn registerBtn-1 my-3">
+                        <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i> Next
+                    </button>
+                    <div class="external-links my-3">
+                        <ul>
+                            <li>
+                                <span class="register txt2 ">
+                                    Already have an Account?
+                                    <a href="{% url 'login_page' %}"> 
+                                        Sign In
+                                    </a>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <h1>SIGN UP</h1><hr>
+                    <div class="form-row">
+                        <div class="col-12 my-2 error text-center text-danger"></div>
+                        <div class="form-group col-12">
+                            <label for="first name">First Name </label>
+                            <input type="text" class="form-control" id="f-name" name="f-name" required>
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="Last name">Last Name </label>
+                            <input type="text" class="form-control" id="l-name" name="l-name" required>
+                        </div>
+
+                        <div class="col-12">
+                            <p class="dob">Date of Birth: </p>
+                        </div>
+
+                        <div class="form-group col-lg-4 col-12">
+                            <label for="Month">Month </label>
+                            <select class="form-control" id="month" required>
+                                <option value=""><!---choose-----></option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group col-lg-4 col-12">
+                            <label for="Day">Day </label>
+                            <select class="form-control" id="day" required>
+                                <option value=""><!---choose-----></option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group col-lg-4 col-12">
+                            <label for="year">Year </label>
+                            <select class="form-control" id="year" required>
+                                <option value=""><!---choose-----></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label for="Gender">Gender </label>
+                            <select class="form-control" id="sex" required>
+                                <option value=""><!---choose-----></option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-lg-6 col-12">
+                            <label for="Country">Country of Residence </label>
+                            <select class="form-control" id="country" required>
+                                <option value=""><!---choose-----></option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-6 col-12">
+                            <label for="State">State </label>
+                            <select class="form-control" id="state" required>
+                                <option value=""><!---choose-----></option>
+                            </select>
+                        </div>
+                        
+                        <button type="button" class="form-group btn btn-outline-success backBtn my-3 col-6">
+                            <i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i> Back
+                        </button>
+                        <button type="button" class="form-group btn btn-outline-success registerBtn2 registerBtn-2 my-3 col-6">
+                            <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i> Next
+                        </button>
+                    </div>
+                    
+                </fieldset>
+                <fieldset>
+                    <h1>SIGN UP</h1><hr>
+                    <div class="col-12 my-2 error text-center text-danger"></div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6 col-12">
+                            <label for="Level of study">Level of study </label>
+                            <select class="form-control" id="los" required>
+                                <option value=""><!---choose-----></option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-6 col-12">
+                            <label for="Class">Class* </label>
+                            <select class="form-control" id="class" required>
+                                <option value=""><!---choose-----></option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="School Name">School Name <span>(optional)</span> </label>
+                            <input type="text" class="form-control" id="school" name="school" required>
+                        </div>
+                        <div class="col-12">
+                            <p class="dob">Contact Information: </p>
+                        </div>
+                        
+                        <div class="form-group col-12">
+                            <label for="Email">Email </label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-row col-12">
+                            <div class="form-group col-4">
+                                <label for="country code">Code </label>
+                                <input type="text" class="form-control" id="county_code" name="county_codee" readonly required>
+                            </div>
+                            <div class="form-group col-8">
+                                <label for="Phone Number">Phone Number <span>(optional)</span></label>
+                                <input type="tel" class="form-control" id="telephone" name="telephone" required>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-4 col-12">
+                            <label for="Facebook name">Facebook name <span>(optional)</span></label>
+                            <input type="text" class="form-control" id="fb" name="fb" required>
+                        </div>
+                        <div class="form-group col-lg-4 col-12">
+                            <label for="Twitter Handle">Twitter Handle <span>(optional)</span></label>
+                            <input type="text" class="form-control" id="twitter" name="twitter" required>
+                        </div>
+                        <div class="form-group col-lg-4 col-12">
+                            <label for="Instagram Handle">Instagram Handle <span>(optional)</span></label>
+                            <input type="text" class="form-control" id="IG" name="IG" required>
+                        </div>
+                        <button type="button" class="form-group btn btn-outline-success backBtn my-3 col-6">
+                            <i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i> Back
+                        </button>
+                        <button type="button" class="form-group btn btn-outline-success registerBtn3 registerBtn-3 my-3 col-6">
+                            <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i> Next
+                        </button>
+                    </div>
+
+                </fieldset>
+
+            </form>
+        </section>
+    {% endblock %}
+     

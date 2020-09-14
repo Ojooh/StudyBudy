@@ -1,0 +1,167 @@
+{% extends "base/reminder_base.html" %}
+{% load static %}
+{%  block content %}
+
+        <main>
+            {% include 'resources/sidebar.html' %}
+
+            <section id="main-content">
+                <section class="wrapper">
+                    <div class="content">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="page-header mb-4"><i class="far fa-sticky-note"></i> Reminder</h3>
+                                </div>
+
+                                <div class="col-12">
+                                    <ol class="breadcrumb bg-light-mode">
+                                        <li class="breadcrumb-item"><a href="{% url 'notes:index' %}">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <i class="far fa-sticky-note"></i> Reminder
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="add-doctor-btn float-left mt-5">
+                                        <a href="{% url 'reminder:add_task' %}" class="btn btn-outline-primary">
+                                            + Add a New Task
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                            {% if task_list %}
+                                <div class="col-12">
+                                    <div class="table-responsive bg-light-mode table-list mt-5">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">S/N</th>
+                                                    <th scope="col">Task</th>
+                                                    <th scope="col">Date Created</th>
+                                                    <th scope="col">Scheduled Time</th>
+                                                    <th scope="col">Completed</th>
+                                                    <th scope="col">actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for tl in task_list %}
+                                                    <tr>
+                                                        <th scope="row">{{ forloop.counter }}</th>
+                                                        <td>
+                                                            {{ tl.task }}
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            {{ tl.created }}
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            {{ tl.time }}
+                                                            
+                                                        </td>
+                                                        {% if tl.completed %}
+                                                        <td>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" data-id="{{tl.id}}" data-url="{% url 'reminder:complete_task' %}" id="completecheck-{{tl.id}}" checked="checked" value="False">
+                                                                <label class="custom-control-label" for="completecheck-{{tl.id}}">Completed</label>
+                                                            </div>
+                                                        </td>
+                                                        {% else %}
+                                                        <td>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" data-id="{{tl.id}}" data-url="{% url 'reminder:complete_task' %}" id="completecheck-{{tl.id}}" value="True">
+                                                                <label class="custom-control-label" for="completecheck-{{tl.id}}">Not completed</label>
+                                                            </div>
+                                                        </td>
+                                                        {% endif %}
+                                                        <td>
+                                                            <div class="drop">
+                                                                <a id="fd-{{tl.id}}" class="drop-trigger-options">
+                                                                    <i class="fas fa-ellipsis-h"></i>
+                                                                </a>
+                                                                <div class="drop-meny opy-{{ tl.id}} deactivated">
+                                                                    <li id="{{ tl.id }}" data-url="{% url 'reminder:edit_task' tl.id %}" class="edit_task">
+                                                                        <a href="#">
+                                                                            <i class="fas fa-pencil-alt"></i> Edit Task
+                                                                        </a>
+                                                                    </li>
+                                                                    <li data-id="{{ tl.id }}" data-url="{% url 'reminder:delete_task' %}" data-name="{{ tl.task }}" class="delet_task">
+                                                                        <a href="#">
+                                                                            <i class="far fa-trash-alt"></i> Delete Task
+                                                                        </a>
+                                                                    </li>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            {%else %}
+                                <div class="col-12 my-5">
+                                    <h3 class="text-center text-danger">No Tasks Have Been set Yet</h3>
+                                </div>
+                            {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section id="modal-section">
+                <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title tile" id="warningModalLabel">Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluif">
+                                    <div class="row">
+                                        <div class="col-12 text-center text-danger content-warning">
+                                            Are you sure you want to delete
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                            <div class="modal-footer">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="float-right">
+                                                <button type="button" data-url="" data-id="" class="yep btn btn-outline-primary" data-dismiss="modal">
+                                                    <i class="fas fa-check"></i> Yes
+                                                </button>
+                                            </div>
+                                            <div class="float-left">
+                                                <button type="button" class="nope btn btn-outline-danger" data-dismiss="modal">
+                                                    <i class="fas fa-times"></i> No
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+{% endblock %}

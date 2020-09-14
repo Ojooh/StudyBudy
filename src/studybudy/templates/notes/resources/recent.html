@@ -1,0 +1,140 @@
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                        <h2><i class="far fa-clock"></i><strong>Recent Notes</strong></h2>
+                                        <div class="panel-actions">
+                                            <a href="#" id="1" class="btn-minimize"><i class="flip-1 fa fa-chevron-up"></i></a>
+                                        </div>
+                                        </div>
+
+                                        <div class="panel-body body-1">
+                                            <div class="container-fluid">
+
+                                                <div class="row">
+                                                {% if recent %}
+                                                    {% for rec in recent %}
+                                                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                                        <div class="recent-notes my-5">
+                                                            <a href="#" data-file="{{ rec.id }}" data-filename="{{ rec.name }}" data-view="view" data-url="{% url 'notes:open_file' %}" class="editModal-trigger">
+                                                                {% load static %}
+                                                                <img src="{% static "images/note-thumbnails/bg-2.png" %}" class="card-img-top" alt="...">
+                                                                <div class="middle-button mr-5">
+                                                                    <div class="open-edit" class="">
+                                                                        <a href="" data-file="{{ rec.id }}" data-view="edit" data-filename="{{ rec.name }}" data-url="{% url 'notes:open_file' %}" class="editModal-trigger">
+                                                                            <i class="fas fa-pencil-alt"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="open-delete">
+                                                                        <a href="" data-id="{{ rec.id }}" data-filename="{{ rec.name }}" data-url="{% url 'notes:delete_file' %}" class="delete-trigger">
+                                                                            <i class="far fa-trash-alt"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title tooltip-main" data-toggle="tooltip" data-placement="bottom" title="{{rec.name}}">
+                                                                        <i class="far fa-file-alt"></i>{{rec.name}}
+                                                                    </h5>
+                                                                {% if rec.last_editted is None and rec.last_opened is None %}
+                                                                    <p class="card-text"> 
+                                                                                Last Open: Never
+                                                                    </p>
+                                                                {% elif rec.last_editted is not None and rec.last_opened is None %} 
+                                                                    <p class="card-text" data-toggle="tooltip" data-placement="top" title="{{rec.last_editted}}"> 
+                                                                                Editted: {{rec.last_editted}}
+                                                                    </p>
+                                                                {% else %} 
+                                                                        <p class="card-text" data-toggle="tooltip" data-placement="top" title="{{rec.last_opened}}">
+                                                                                Last Open: {{rec.last_opened}}
+                                                                        </p>
+                                                                {% endif %}
+                                                                    
+                                                                    <div class="btn-options">
+                                                                        <a href="#">
+                                                                            <div id="note-option-{{rec.id}}" class="options-rec-icon"></div>
+                                                                        </a>
+                                                                        {% if rec.starred %}
+                                                                        <a href="#">
+                                                                            <div class="options-icon-star">
+                                                                                <i class="fas fa-star"></i>
+                                                                            </div>
+                                                                        </a>
+                                                                        {% endif %}
+                                                                        <ul class="other-options-menu option-rec-{{rec.id}} deactivated">
+                                                                            <li id="{{rec.id}}" data-name="{{rec.name}}" data-description="{{rec.description}}" class="rename-file">
+                                                                                <a href="#" class="rename">
+                                                                                    <i class="fas fa-text-height"></i> Rename
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="share-{{rec.id}}" data-id="{{rec.id}}" data-name="{{rec.name}}" class="share-file">
+                                                                                <a href="#">
+                                                                                    <i class="fas fa-share-alt"></i> share
+                                                                                </a>
+                                                                            </li>
+                                                                            <li id="summary-{{rec.id}}" data-name="{{rec.name}}" data-id="{{rec.id}}" data-url="{% url 'notes:summarize' %}" class="summary-file">
+                                                                                <a href="#">
+                                                                                    <i class="fab fa-stripe-s"></i> Give a Summary
+                                                                                </a>
+                                                                            </li>
+                                                                            {% if rec.quized %}
+                                                                                <li id="quiz-{{rec.id}}" data-id="{{rec.id}}" data-name="{{rec.name}}" data-url="{% url 'notes:quiz_result' %}" class="quiz-file">
+                                                                                    <a href="#">
+                                                                                        <i class="fas fa-question"></i> Take a Quiz
+                                                                                    </a>
+                                                                                </li>
+                                                                            {% else %}
+                                                                                <li id="quiz-{{rec.id}}" data-id="{{rec.id}}" data-name="{{rec.name}}" data-url="{% url 'notes:quiz_note' %}" class="quiz-file">
+                                                                                    <a href="#">
+                                                                                        <i class="fas fa-question"></i> Take a Quiz
+                                                                                    </a>
+                                                                                </li>
+                                                                            {% endif %}
+                                                                            <li data-id="{{ rec.id }}" data-url="{% url 'notes:move_list' %}" class="move-list">
+                                                                                <a href="#">
+                                                                                    <i class="fas fa-arrow-right"></i> Move
+                                                                                </a>
+                                                                            </li>
+                                                                            <li data-it="" data-url="{% url 'notes:download_file' rec.id %}" class="download_file">
+                                                                                <a href="">
+                                                                                    <i class="fas fa-download"></i> Download
+                                                                                </a>
+                                                                            </li>
+                                                                            <li data-view="edit" data-filename="{{ rec.name }}" data-url="{% url 'notes:open_file_new_tab' rec.id %}" class="open-new-tab">
+                                                                                <a href="#"><i class="fas fa-external-link-alt"></i>Open in new Tab</a>
+                                                                            </li>
+                                                                            <li id="details-{{ rec.id }}" data-id="{{rec.id }}" data-name="{{ rec.name }}" class="details" data-url="{% url 'notes:details' %}">
+                                                                                <a href="#">
+                                                                                    <i class="fas fa-info-circle"></i> Details
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                {% if rec.public %}
+                                                                                <div class="custom-control custom-switch" data-url="{% url 'notes:ajax_change_public' %}">
+                                                                                    <input type="checkbox" class="custom-control-input" id="customSwitch-{{ rec.id }}" value="False-{{ rec.id }}" checked>
+                                                                                    <label class="custom-control-label" for="customSwitch-{{ rec.id }}"><i class="fas fa-globe"></i> Public</label>
+                                                                                </div>
+                                                                                {% else %}
+                                                                                <div class="custom-control custom-switch" data-url="{% url 'notes:ajax_change_public' %}">
+                                                                                    <input type="checkbox" class="custom-control-input" id="customSwitch-{{ rec.id }}" value="True-{{ rec.id }}">
+                                                                                    <label class="custom-control-label" for="customSwitch-{{ rec.id }}"><i class="fas fa-globe"></i> Public</label>
+                                                                                </div>
+                                                                                {% endif %}
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>                                                              
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <div class="col-12 my-5">
+                                                        <h4 class="text-center text-danger">NO RECENT NOTES !</h4>
+                                                    </div>
+                                                {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>

@@ -1,0 +1,469 @@
+{% extends "base/notes_base.html" %}
+{% load static %}
+{%  block content %}
+
+        <main>
+            {% include 'resources/sidebar.html' %}
+
+            <section id="main-content">
+                <section class="wrapper">
+                    <div class="content">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="page-header mb-4"><i class="far fa-star"></i> Stared</h3>
+                                </div>
+
+                                <div class="col-12">
+                                    <ol class="breadcrumb bg-light-mode">
+                                        <li class="breadcrumb-item"><a href="{% url 'notes:index' %}">Home</a></li>
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'notes:index' %}">
+                                                <i class="far fa-clipboard"></i> My Notes
+                                            </a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <i class="far fa-star"></i> Starred
+                                        </li>
+                                        
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                          <h2><i class="far fa-file-alt"></i><strong>All My Notes</strong></h2>
+                                          <div class="panel-actions">
+                                        {% ifequal state.view "grid" %}
+                                            <a href="{% url 'notes:change_view' 'tabular' %}" class=""><i class="fas fa-list-ul"></i></a>
+                                        {% else %}
+                                            <a href="{% url 'notes:change_view' 'grid' %}" class=""><i class="fas fa-grip-horizontal"></i></a>
+                                        {% endifequal %}
+                                            <a href="#" id="2" class="btn-minimize"><i class="flip-2 fa fa-chevron-up"></i></a>
+                                          </div>
+                                        </div>
+
+                                        <div class="panel-body body-2">
+                                            <div class="container-fluid">
+                                                <div class="row" style="width: 100%;">
+                                                    <div class="col-12 my-4">
+
+                                                        <div class="my-notes">
+                                                            
+                                                            <!----grid-view----->
+                                                            {% ifequal state.view "grid" %}
+                                                            <div class="grid-view">
+                                                                {% include 'notes/resources/folders.html' %}
+                                                                {% include 'notes/resources/notes.html' %}
+                                                            </div>
+                                                            {% else %}
+                                                            <!----List-view----->
+                                                            <div id="tableu" class="tabular-view">
+                                                                <div class="container-fluid">
+                                                                    {% include 'notes/resources/foldersTable.html' %}
+                                                                    {% include 'notes/resources/notesTable.html' %}
+                                                                </div>
+                                                            </div>
+                                                            {% endifequal %}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                    
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section id="modal-section">
+                <div class="modal fade" id="FileAttrModal" tabindex="-1" role="dialog" aria-labelledby="FileAttrModalLabel" aria-hidden="true">
+                    <!-- <div class="modal-dialog" role="document"> -->
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="FileAttrModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="file-action-choice">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <a href="#" class="upload-choice">
+                                                <div class="file-action-box e text-center">
+                                                    <i class="fas fa-file-upload"></i>      
+                                                </div>
+                                            </a>
+                                            <h5 class="text-center my-5">
+                                                File Upload
+                                            </h5>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="blank-choice">
+                                                <div class="file-action-box text-center">
+                                                    <i class="far fa-file-alt"></i>     
+                                                </div>
+                                            </a>
+                                            <h5 class="text-center my-5">
+                                                Create a Blank File
+                                            </h5>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="file-naming deactivated">
+                                <div class="modal-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-12 my-3 error text-center text-danger"></div>
+                                        <div class="form-group col-12">
+                                            <label class="modal-label" for="file name">File name: </label>
+                                            <input type="text" class="form-control" id="file-name" name="file-name" required>
+                                        </div>
+                                        <div class="description-area form-group col-12">
+                                            <label class="" for="description">Description: </label>
+                                            <textarea id="description-field" class="form-control"></textarea>
+                                        </div>
+                                        <div class="mode deactivated" data-id="" data-type="" data-url="{% url 'notes:create_new_file' %}" data-url3="{% url 'notes:rename_file' %}"></div>
+                                    </div>
+                                
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-outline-secondary backy-dacky">Back</button>
+                                <button type="button" class="btn btn-outline-primary create-file">Create</button>
+                                </div>
+                            </div>
+                            <div class="file-upload deactivated">
+                                <div class="container-fluid">
+                                    <div class="row my-5">
+                                        <div class="col-12">
+                                            <div class="upload-area text-center">
+                                                <form class="my-4">
+                                                    <input type="file" name="files" id="upload-note"  multiple/>
+                                                </form>
+                                                <div class="" id="upload-file" data-url="{% url 'notes:upload_notes' %}">
+                                                    <label for="upload-note" class="upload-error upload-label"><strong>Choose a file</strong><span> or drag it here</span>.</label>
+                                                </div>
+                            
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-outline-secondary backy-dacky">Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="ediitViewFileModal" tabindex="-1" role="dialog" aria-labelledby="ediitViewFileModalLabel" aria-hidden="true">
+                    <!-- <div class="modal-dialog" role="document"> -->
+                    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="ediitViewFileModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="file-edit-view">
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group col-12 my-3 error deactivatedtext-center text-danger"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div id='loader_2' class="loading-bar">
+                                                    {% load static %}
+                                                    <img src="{% static "images/GIF/tenor.gif" %}" width='100%' height='500px'>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="pannel mb-5 ckay deactivated">
+                                                    <div class="panel-body">
+                                                        <div class="form">
+                                                            <form action="#" data-id="" id="editor-form" data-url="{% url 'notes:save_file' %}" class="form-horizontal">
+                                                            <div class="ck-editor form-group">
+                                                                <div class="col-12">
+                                                                    <div class="modey deactivated"></div>
+                                                                <textarea class="form-control" id="editor2" row="20"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title tile" id="warningModalLabel">Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluif">
+                                    <div class="row">
+                                        <div class="col-12 text-center text-danger content-warning">
+                                            Are you sure you want to delete
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                            <div class="modal-footer">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="float-right">
+                                                <button type="button" data-url="" data-id="" class="yep btn btn-outline-primary" data-dismiss="modal">
+                                                    <i class="fas fa-check"></i> Yes
+                                                </button>
+                                            </div>
+                                            <div class="float-left">
+                                                <button type="button" class="nope btn btn-outline-danger" data-dismiss="modal">
+                                                    <i class="fas fa-times"></i> No
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="FileInfoModal" tabindex="-1" role="dialog" aria-labelledby="FileInfoModalLabel" aria-hidden="true">
+                    <!-- <div class="modal-dialog" role="document"> -->
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="FileInfoModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="file-details">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row loading-details">
+                                            <h3>Loading Details........</h3>
+                                        </div>
+                                        <div class="row file-details deactivated">
+                                            <div class="col-12 my-3 error text-center deactivated text-danger"></div>
+                                            <div class="col-12 my-3">
+                                                <h5 class="fl-name text-center my-4 tooltip-main" data-toggle="tooltip" data-placement="bottom" title="">
+                                                </h5>
+                                            </div>
+                                            <hr>
+                                            <div class="gather-round text-left col-6">
+                                                <p class="fl-type tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-size tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-owner tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-location tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                            </div>
+                                            <div class="not-afraid text-left col-6">
+                                                <p class="fl-created tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-modified tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-opened tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-editted tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                            </div>
+                                            <div class="have-mercy text-center col-10 my-3">
+                                                <div class="inobee">
+                                                    <p class="fl-desc"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-2 room mt-5">
+                                                <div class="edit-description"><i class="fas fa-pencil-alt"></i></div>
+                                            </div>
+                                            <div class="woundy deactivated col-12">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-group col-12 my-3 errorzy text-center text-danger"></div>
+                                                            <div class="form-group">
+                                                                <label for="description">Description: </label>
+                                                                <textarea class="form-control" row="4" id="desc"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="float-right">
+                                                                <button type="button" id="okay" data-id="" data-url="{%url 'notes:change_description' %}" class="btn btn-outline-primary">
+                                                                    <i class="fas fa-check"></i> OK
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                </div>
+                            </div>
+                            <div class="share-file-menu deactivated">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-12 my-3">
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-12 my-3 error text-center text-danger"></div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group rec-list col-12">
+                                                            <div class="after">
+                                                                <ul class="reci-list"></ul>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group col-12">
+                                                            <label for="people">Enter Receivers Email or Username: </label>
+                                                            <input type="text" class="form-control" id="recipients"/>
+                                                            <small id="emailHelp" class="form-text text-info">
+                                                                To allow other the recipient  edit this file, The file must be made public
+                                                            </smaill>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="notify form-group deactivated col-12">
+                                                            <textarea class="form-control" placeholder="Add a Message" id="rec-msg" rows="4"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="util deactivated"data-id="" data-url="{% url 'notes:ajax_share_file' %}"></div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-12">
+                                                            <hr>
+                                                            <div class="text-right mt-4">
+                                                                <button type="button" class="btn btn-outline-primary sharey">
+                                                                    <i class="far fa-paper-plane"></i> Done
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- <div class="modal-footer"></div> -->
+
+                            </div>
+                            <div class="move-list-meny deactivated">
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 my-3 error text-center deactivated text-danger"></div>
+                                            <div class="col-6">
+                                                <div class="folder-move-list"></div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="folder-move-icon float-right"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="text-center deactivated waiting"><h5>Moving.......</h5></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="move-store" data-id="" data-url="{% url 'notes:move' %}"></div>
+                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                        <i class="fas fa-times"></i> Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="QuizSummaryModal" tabindex="-1" role="dialog" aria-labelledby="QuizSummaryModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="QuizSummaryModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="summary-part">
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 my-3 error text-center text-danger"></div>
+                                            <div class="col-12 text-center deactivated loading-sum text-danger">
+                                                SUMMARIZING.......
+                                            </div>
+                                            <div class="col-12 get-number">
+                                                <form>
+                                                    <div class="form-group col-12">
+                                                        <label for="people">Enter The number of Sentences to be returned: </label>
+                                                        <input type="number" class="form-control" min="1" id="number"/>
+                                                        <!-- <small id="emailHelp" class="form-text text-info">
+                                                            To allow other the recipient  edit this file, The file must be made public
+                                                        </smaill> -->
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="col-12 summarized deactivated">
+                                                <p class="text-info smmry"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">x Close</button>
+                                    <button type="button" data-id="" data-url="" class="btn btn-outline-primary summary-action"><i class="fa fa-arrow-right"></i> Summarize</button>
+                                </div>
+                                
+                            </div>
+
+                            <div class="quizy-part deactiated"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+
+        {% endblock %}

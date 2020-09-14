@@ -1,0 +1,104 @@
+{% extends "base/profile_base.html" %}
+{% load static %}
+{%  block content %}
+
+        <main>
+            {% include 'resources/sidebar.html' %}
+
+            <section id="main-content">
+                <section class="wrapper">
+                    <div class="content">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="page-header mb-4"><i class="fas fa-user"></i> Profile</h3>
+                                </div>
+
+                                <div class="col-12">
+                                    <ol class="breadcrumb bg-light-mode">
+                                        <li class="breadcrumb-item"><a href="{% url 'notes:index' %}">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <i class="fas fa-user"></i> Profile
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 my-5">
+                                    <div class="card" style="height: 43rem;">
+                                        {% if profile_pic %}
+                                            <img src="{{ profile_pic.url }}" alt="..." class="mx-auto avatar2"> 
+                                        {% else  %}
+                                            <img src="{% static "images/profile/avatar.png" %}" alt="..." class="mx-auto avatar2">
+                                        {% endif %}
+                                        <hr>
+                                        <div class="card-body">
+                                            <h3 class="card-title display-5">{{ full_name }}</h3>
+                                            <h5 class="card-text">
+                                                {{ dob }}  
+                                            </h5>
+                                            <h6 class="card-text">
+                                                School : {{ school }}  
+                                            </h6>
+                                            <h6 class="card-text">
+                                                {{ role }}  
+                                            </h6>
+                                            <h6 class="card-text">
+                                                {{ cs }}  
+                                            </h6>
+                                            <hr>
+                                            <h6 class="card-text">
+                                                Email : <a href="mailto:{{ email }}" class="card-link">{{ email }}</a>  
+                                            </h6>
+                                            
+                                            <h6 class="card-text">
+                                                Telephone : {{ telephone }}  
+                                            </h6>
+    
+                                            <h6 class="card-text mt-3 extend">
+                                                <a href="{% url 'users:edit_profile' user.id %}" class="card-link text-mattRed">Edit Profile...</a> 
+                                            </h6>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 my-5">
+                                    <div class="card" style="height: 20rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title mt-2"><i class="far fa-clipboard"></i> Notes</h5>
+                                            <h1 class="card-text noa text-center display-1 mt-4">{{ file_count }}</h1>
+                                        </div>
+                                    </div>
+                                    <div class="card bg-dark text-white mt-5" style="height: 20rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title mt-2"><i class="far fa-folder"></i> Folders</h5>
+                                            <h1 class="card-text noa text-center display-1 mt-4">{{ folder_count }}</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 my-5">
+                                    <div class="card" style="height: 20rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title mt-2"><i class="fas fa-question"></i> Quiz</h5>
+                                            <h1 class="card-text noa text-center display-1 mt-4">{{ quiz_count }}</h1>
+                                        </div>
+                                    </div>
+                                    <div class="card mt-5" style="height: 20rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title mt-2"><i class="far fa-trash-alt"></i> Trash</h5>
+                                            <h1 class="card-text noa text-center display-1 mt-4">{{ trash_count }}</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+        </main>
+{% endblock %}

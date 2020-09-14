@@ -1,0 +1,40 @@
+            <div id="sidebar" class="nav-collapse">
+                <ul class="sidebar-menu">
+                    <li class="">
+                        <a class="" href="{% url 'notes:index' %}">
+                            <i class="far fa-clipboard"></i>
+                            <span>My Notes</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a class="" href="">
+                            <i class="fas fa-question"></i>
+                            <span>Quiz</span>
+                        </a>
+                    </li> -->
+                    <li>
+                        <a class="" href="{% url 'reminder:task_list' %}">
+                            <i class="far fa-sticky-note"></i>
+                            <span>Reminder</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="{% url 'trash:trash' %}">
+                            <i class="far fa-trash-alt"></i>
+                            <span>Trash</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a class="" href="index.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li> -->
+                    <li>
+                        <a class="sideMenuToggler" href="#">
+                            <i class="fas fa-angle-double-left"></i>
+                            <span>Minimize</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>

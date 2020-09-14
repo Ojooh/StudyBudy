@@ -1,0 +1,39 @@
+                            <div class="row starter-menu">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <a href="#" id="name-file">
+                                        <div class="info-box blue-bg">
+                                            <i class="far fa-file"></i>
+                                            <div class="count"> + </div>
+                                            <div class="title">New Note</div>       
+                                        </div>
+                                    </a> 
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <a href="#" id="name-folder">
+                                        <div class="info-box blue-bg">   
+                                            <i class="far fa-folder-open"></i>
+                                            <div class="count"> + </div>
+                                            <div class="title">New folder</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <a href="{% url 'notes:stared_note' %}">
+                                        <div class="info-box blue-bg">
+                                            <i class="far fa-star"></i>
+                                            <div class="count">{{ starred }}</div>
+                                            <div class="title">Starred</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <a href="{% url 'notes:shared_note' %}">
+                                        <div class="info-box blue-bg">
+                                            <i class="fas fa-share-alt"></i>
+                                        
+                                            <div class="count">{{ sharred }}</div>
+                                            <div class="title">Shared With me</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>

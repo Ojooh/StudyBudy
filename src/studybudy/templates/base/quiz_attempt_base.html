@@ -1,0 +1,39 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% load static %}
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static "lib/bootstrap/css/bootstrap.min.css" %}">
+
+        <!-- icon CSS -->
+        <link rel="stylesheet" href="{% static "lib/fontawesome/css/all.css" %}" >
+        <link rel="stylesheet" href="{% static "lib/fontawesome/css/fontawesome.min.css" %}" >
+
+        <!-- persnnal CSS -->
+        <link rel="stylesheet" href="{% static "css/quizPage.css" %}" > 
+
+        <title>StudyBudy-Automated E-learning Study Guide-Quiz Attempt</title>
+
+        <!-- JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="{% static "lib/jquery/jquery-3.4.1.min.js" %}"></script>
+        <script src="{% static "lib/jquery/jquery-migrate.min.js" %}"></script>
+        <script src="{% static "lib/bootstrap/js/bootstrap.min.js" %}"></script>
+        <script src="{% static "lib/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+        <script src="{% static "lib/easing/easing.min.js" %}"></script>
+        <script src="{% static "lib/sweetalert2/dist/sweetalert2.all.min.js" %}"></script>
+    </head>
+    <body class="bg-White">
+        {% include 'resources/navbar.html' %}
+        {% block content %}
+          
+        {% endblock %}
+        {% load static %}
+        <!--personnal JS-->
+        <script src="{% static "js/script_4.js" %}"></script>
+    </body>
+</html>

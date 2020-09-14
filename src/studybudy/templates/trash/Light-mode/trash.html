@@ -1,0 +1,217 @@
+{% extends "base/trash_base.html" %}
+{% load static %}
+{%  block content %}
+
+        <main>
+            {% include 'resources/sidebar.html' %}
+
+            <section id="main-content">
+                <section class="wrapper">
+                    <div class="content">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="page-header mb-4"> <i class="far fa-trash-alt"></i>Trash</h3>
+                                    
+                                </div>
+
+                                <div class="col-12">
+                                    <ol class="breadcrumb bg-light-mode">
+                                        <li class="breadcrumb-item"><a href="{% url 'notes:index' %}">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <i class="far fa-trash-alt"></i>Trash</h3>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                          <h2><i class="far fa-file-alt"></i><strong>All My Notes</strong></h2>
+                                          <div class="panel-actions">
+                                        {% ifequal state.view "grid" %}
+                                            <a href="{% url 'notes:change_view' 'tabular' %}" class=""><i class="fas fa-list-ul"></i></a>
+                                        {% else %}
+                                            <a href="{% url 'notes:change_view' 'grid' %}" class=""><i class="fas fa-grip-horizontal"></i></a>
+                                        {% endifequal %}
+                                            <a href="#" id="2" class="btn-minimize"><i class="flip-2 fa fa-chevron-up"></i></a>
+                                          </div>
+                                        </div>
+
+                                        <div class="panel-body body-2">
+                                            <div class="container-fluid">
+                                                <div class="row" style="width: 100%;">
+                                                    <div class="col-12 my-4">
+
+                                                        <div class="my-notes">
+                                                            
+                                                            <!----grid-view----->
+                                                            {% ifequal state.view "grid" %}
+                                                            <div class="grid-view">
+                                                                {% include 'trash/resources/folders.html' %}
+                                                                {% include 'trash/resources/notes.html' %}
+                                                            </div>
+                                                            {% else %}
+                                                            <!----List-view----->
+                                                            <div id="tableu" class="tabular-view">
+                                                                <div class="container-fluid">
+                                                                    {% include 'trash/resources/foldersTable.html' %}
+                                                                    {% include 'trash/resources/notesTable.html' %}
+                                                                </div>
+                                                            </div>
+                                                            {% endifequal %}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                    
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section id="modal-section">
+                <div class="modal fade" id="FileInfoModal" tabindex="-1" role="dialog" aria-labelledby="FileInfoModalLabel" aria-hidden="true">
+                    <!-- <div class="modal-dialog" role="document"> -->
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="FileInfoModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="file-details">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row loading-details">
+                                            <h3>Loading Details........</h3>
+                                        </div>
+                                        <div class="row file-details deactivated">
+                                            <div class="col-12 my-3 error text-center deactivated text-danger"></div>
+                                            <div class="col-12 my-3">
+                                                <h5 class="fl-name text-center my-4 tooltip-main" data-toggle="tooltip" data-placement="bottom" title="">
+                                                </h5>
+                                            </div>
+                                            <hr>
+                                            <div class="gather-round text-left col-6">
+                                                <p class="fl-type tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-size tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-owner tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-location tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                            </div>
+                                            <div class="not-afraid text-left col-6">
+                                                <p class="fl-created tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-modified tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-opened tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                                <p class="fl-editted tooltip-main" data-toggle="tooltip" data-placement="bottom" title=""></p>
+                                            </div>
+                                            <div class="have-mercy text-center col-10 my-3">
+                                                <div class="inobee">
+                                                    <p class="fl-desc"></p>
+                                                </div>
+                                            </div>
+                                            <div class="woundy deactivated col-12">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-group col-12 my-3 errorzy text-center text-danger"></div>
+                                                            <div class="form-group">
+                                                                <label for="description">Description: </label>
+                                                                <textarea class="form-control" row="4" id="desc"></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                </div>
+                            </div>
+                            <div class="move-list-meny deactivated">
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 my-3 error text-center deactivated text-danger"></div>
+                                            <div class="col-6">
+                                                <div class="folder-move-list"></div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="folder-move-icon float-right"></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="text-center deactivated waiting"><h5>Moving.......</h5></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="move-store" data-id="" data-url="{% url 'trash:recycle' %}"></div>
+                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                        <i class="fas fa-times"></i> Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title tile" id="warningModalLabel">Delete</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluif">
+                                        <div class="row">
+                                            <div class="col-12 text-center text-danger content-warning">
+                                                Are you sure you want to delete
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                           
+                                <div class="modal-footer">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="float-right">
+                                                    <button type="button" data-url="" data-id="" class="yep btn btn-outline-primary" data-dismiss="modal">
+                                                        <i class="fas fa-check"></i> Yes
+                                                    </button>
+                                                </div>
+                                                <div class="float-left">
+                                                    <button type="button" class="nope btn btn-outline-danger" data-dismiss="modal">
+                                                        <i class="fas fa-times"></i> No
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                            </div>
+                        </div>
+                </div>
+            </section>
+        </main>
+        
+
+        {% endblock %}

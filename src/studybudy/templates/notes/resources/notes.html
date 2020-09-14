@@ -1,0 +1,210 @@
+                                                                <div class="my-notes-heading">
+                                                                    <h2><i class="far fa-file-alt"></i><strong>Files</strong></h2>
+                                                                    <div class="my-notes-filter">
+                                                                            <a href="#">
+                                                                                <p class="file-filter-class">
+                                                                                    {{ state.file_filters }}
+                                                                                </p>
+                                                                            </a>
+                                                                            {% ifequal state.file_order "ASC" %}
+                                                                            <a href="{% url 'notes:order_note' 'file' %}"  class="order-file">
+                                                                                <p class="folder-order">
+                                                                                    <i class="fas fa-arrow-up"></i>
+                                                                                </p>
+                                                                            </a>
+                                                                            {% else %}
+                                                                            <a href="{% url 'notes:order_note' 'file' %}"  class="order-file">
+                                                                                <p class="folder-order">
+                                                                                    <i class="fas fa-arrow-down"></i>
+                                                                                </p>
+                                                                            </a> 
+                                                                            {% endifequal %}   
+                                                                    </div>
+                                                                    <ul class="filter-options-menu option-file-filter deactivated">
+                                                                        <li class="filters-file" data-url="{% url 'notes:filter_note' %}" data-hml="Name">
+                                                                            <i class=""></i><a href="#" class="file-filt-1"> Name</a>
+                                                                        </li>
+                                                                        <li class="filters-file" data-url="{% url 'notes:filter_note' %}" data-hml="Last Modified">
+                                                                            <i class=""></i><a href="#" class="file-filt-2"> Last Modified</a>
+                                                                        </li>
+                                                                        <li class="filters-file" data-url="{% url 'notes:filter_note' %}" data-hml="Last Opened">
+                                                                            <i class=""></i><a href="#" class="file-filt-3"> Last Opened</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <hr>
+
+
+                                                                <div class="my-notes-body">
+                                                                    <div class="container-fluid">
+                                                                        {% if files %}
+                                                                        <div class="row">
+                                                                            {% for fl in files %}
+                                                                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                                                                <div class="recent-notes my-5">
+                                                                                    <a href="#" data-file="{{ fl.id }}" data-filename="{{ fl.name }}" data-view="view" data-url="{% url 'notes:open_file' %}" class="editModal-trigger">
+                                                                                        {% load static %}
+                                                                                        <img src="{% static "images/note-thumbnails/bg-2.png" %}" class="card-img-top" alt="...">
+                                                                                        <div class="middle-button mr-5">
+                                                                                            {% ifequal fl.owner request.user %}
+                                                                                            <div class="open-edit" class="">
+                                                                                                <a href="" data-file="{{ fl.id }}" data-view="edit" data-filename="{{ fl.name }}" data-url="{% url 'notes:open_file' %}" class="editModal-trigger">
+                                                                                                    <i class="fas fa-pencil-alt"></i>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                            <div class="open-delete">
+                                                                                                <a href="" data-id="{{ fl.id }}" data-filename="{{ fl.name }}" data-url="{% url 'notes:delete_file' %}" class="delete-trigger">
+                                                                                                    <i class="far fa-trash-alt"></i>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                            {% else %}
+                                                                                                {% if fl.public %}
+                                                                                                    <div class="open-edit" class="">
+                                                                                                        <a href="" data-file="{{ fl.id }}" data-view="edit" data-filename="{{ fl.name }}" data-url="{% url 'notes:open_file' %}" class="editModal-trigger">
+                                                                                                            <i class="fas fa-pencil-alt"></i>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                {% endif %}
+                                                                                            {% endifequal %}
+                                                                                        </div>
+                                                                                        <div class="card-body">
+                                                                                            <h5 class="card-title tooltip-main" data-toggle="tooltip" data-placement="bottom" title="{{fl.name}}">
+                                                                                                <i class="far fa-file-alt"></i>{{fl.name}}
+                                                                                            </h5>
+                                                                                        {% if fl.last_editted is None and fl.last_opened is None %}
+                                                                                            <p class="card-text"> 
+                                                                                                        Last Open: Never
+                                                                                            </p>
+                                                                                        {% elif fl.last_editted is not None and fl.last_opened is None %} 
+                                                                                            <p class="card-text" data-toggle="tooltip" data-placement="top" title="{{fl.last_editted}}"> 
+                                                                                                        Editted: {{fl.last_editted}}
+                                                                                            </p>
+                                                                                        {% else %} 
+                                                                                                <p class="card-text" data-toggle="tooltip" data-placement="top" title="{{fl.last_opened}}">
+                                                                                                        Last Open: {{fl.last_opened}}
+                                                                                                </p>
+                                                                                        {% endif %}
+
+
+                                                                                        {% ifequal fl.owner request.user %}    
+                                                                                            <div class="btn-options">
+                                                                                                <a href="#">
+                                                                                                    <div id="note-option-{{fl.id }}" class="options-icon"></div>
+                                                                                                </a>
+                                                                                                {% if fl.starred %}
+                                                                                                <a href="#" class="star" data-value="False-{{ fl.id }}" data-url="{% url 'notes:star_file' %}">
+                                                                                                    <div class="options-icon-star">
+                                                                                                        <i class="fas fa-star"></i>
+                                                                                                    </div>
+                                                                                                </a>
+                                                                                                {% else %}
+                                                                                                <a href="#" class="star" data-value="True-{{ fl.id }}" data-url="{% url 'notes:star_file' %}">
+                                                                                                    <div class="options-icon-star">
+                                                                                                        <i class="far fa-star"></i>
+                                                                                                    </div>
+                                                                                                </a>
+                                                                                                {% endif %}
+                                                                                                <ul class="other-options-menu option-{{fl.id}} reverse deactivated">
+                                                                                                    <li id="{{fl.id}}" data-name="{{fl.name}}" data-description="{{fl.description}}" class="rename-file">
+                                                                                                        <a href="#" class="rename">
+                                                                                                            <i class="fas fa-text-height"></i> Rename
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    <li id="share-{{fl.id}}" data-id="{{fl.id}}" data-name="{{fl.name}}" class="share-file">
+                                                                                                        <a href="#">
+                                                                                                            <i class="fas fa-share-alt"></i> share
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    <li id="summary-{{fl.id}}" data-name="{{fl.name}}" data-id="{{fl.id}}" data-url="{% url 'notes:summarize' %}" class="summary-file">
+                                                                                                        <a href="#">
+                                                                                                            <i class="fab fa-stripe-s"></i> Give a Summary
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    {% if fl.quized %}
+                                                                                                        <li id="quiz-{{fl.id}}" data-id="{{fl.id}}" data-name="{{fl.name}}" data-url= "{% url 'notes:quiz_result' %}" class="quiz-file">
+                                                                                                            <a href="#">
+                                                                                                                <i class="fas fa-question"></i> Take a Quiz
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                    {% else %}
+                                                                                                        <li id="quiz-{{fl.id}}" data-id="{{fl.id}}" data-name="{{fl.name}}" data-url="{% url 'notes:quiz_note' %}" class="quiz-file">
+                                                                                                            <a href="#">
+                                                                                                                <i class="fas fa-question"></i> Take a Quiz
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                    {% endif %}
+                                                                                                    <li data-id="{{ fl.id }}" data-url="{% url 'notes:move_list' %}" class="move-list">
+                                                                                                        <a href="#">
+                                                                                                            <i class="fas fa-arrow-right"></i> Move
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    <li data-it="" data-url="{% url 'notes:download_file' fl.id %}" class="download_file">
+                                                                                                        <a href="">
+                                                                                                            <i class="fas fa-download"></i> Download
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    <li data-view="edit" data-filename="{{ fl.name }}" data-url="{% url 'notes:open_file_new_tab' fl.id %}" class="open-new-tab">
+                                                                                                        <a href="#"><i class="fas fa-external-link-alt"></i>Open in new Tab</a>
+                                                                                                    </li>
+                                                                                                    <li id="details-{{ fl.id }}" data-id="{{fl.id }}" data-name="{{ fl.name }}" class="details" data-url="{% url 'notes:details' %}">
+                                                                                                        <a href="#">
+                                                                                                            <i class="fas fa-info-circle"></i> Details
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    <li>
+                                                                                                        {% if fl.public %}
+                                                                                                        <div class="custom-control custom-switch" data-url="{% url 'notes:ajax_change_public' %}">
+                                                                                                            <input type="checkbox" class="custom-control-input" id="customSwitch-{{ fl.id }}" value="False-{{ fl.id }}" checked>
+                                                                                                            <label class="custom-control-label" for="customSwitch-{{ fl.id }}"><i class="fas fa-globe"></i> Public</label>
+                                                                                                        </div>
+                                                                                                        {% else %}
+                                                                                                        <div class="custom-control custom-switch" data-url="{% url 'notes:ajax_change_public' %}">
+                                                                                                            <input type="checkbox" class="custom-control-input" id="customSwitch-{{ fl.id }}" value="True-{{ fl.id }}">
+                                                                                                            <label class="custom-control-label" for="customSwitch-{{ fl.id }}"><i class="fas fa-globe"></i> Public</label>
+                                                                                                        </div>
+                                                                                                        {% endif %}
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        {% else %}
+                                                                                            <div class="btn-options">
+                                                                                                <a href="#">
+                                                                                                    <div id="note-option-{{fl.id }}" class="options-icon"></div>
+                                                                                                </a>
+                                                            
+                                                                                                <ul class="other-options-menu option-{{fl.id}} deactivated">
+                                                                                                    <li id="summary-{{fl.id}}" data-name="{{fl.name}}" data-id="{{fl.id}}" data-url="{% url 'notes:summarize' %}" class="summary-file">
+                                                                                                        <a href="#">
+                                                                                                            <i class="fab fa-stripe-s"></i> Give a Summary
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    <li id="details-{{ fl.id }}" data-id="{{fl.id }}" data-name="{{ fl.name }}" class="details" data-url="{% url 'notes:details' %}">
+                                                                                                        <a href="#">
+                                                                                                            <i class="fas fa-info-circle"></i> Details
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    {% if fl.public %}
+                                                                                                    <li data-it="" data-url="{% url 'notes:download_file' fl.id %}" class="download_file">
+                                                                                                        <a href="">
+                                                                                                            <i class="fas fa-download"></i> Download
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    {% endif %}
+                                                                                                </ul>
+                                                                                            </div>  
+                                                                                        {% endifequal %}
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                            {% endfor %}
+                                                                        </div>
+                                                                        {% else %}                                                                           
+                                                                        <div class="row">
+                                                                            <div class="col-12 my-5">
+                                                                                <h6 class="text-center text-danger">NO FILES AVAILABLE</h6>
+                                                                            </div>
+                                                                        </div>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>

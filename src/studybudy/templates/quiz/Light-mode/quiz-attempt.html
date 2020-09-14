@@ -1,0 +1,319 @@
+{% extends "base/quiz_attempt_base.html" %}
+{% load static %}
+{%  block content %}
+
+        <main>
+            {% include 'resources/sidebar.html' %}
+
+            <section id="main-content">
+                <section class="wrapper">
+                    <div class="content">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="page-header mb-4"><i class="fas fa-question"></i> Quiz</h3>
+                                </div>
+
+                                <div class="col-12">
+                                    <ol class="breadcrumb bg-light-mode">
+                                        <li class="breadcrumb-item"><a href="{% url 'notes:index' %}"> Home</a></li>
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'quiz:index' %}">
+                                                <i class="fas fa-question"></i> Quiz
+                                            </a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <i class="far fa-question-circle"></i> Quiz Attempt
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                          <h2><i class="far fa-question-circle"></i><strong>Questions Bar</strong></h2>
+                                          <div class="panel-actions">
+                                            <a href="#" id="1" class="btn-minimize"><i class="flip-1 fa fa-chevron-up"></i></a>
+                                          </div>
+                                        </div>
+                                        <div class="panel-body body-1">
+                                            <div class="container-fluid">
+                                                <div class="row prep" style="width: 100%;">
+                                                    <div class="col-12 my-3">
+                                                        <div class="text-center my-4">
+                                                            <h3>{{ filename }} Quiz Attempt</h3>
+                                                        </div>
+                                                        <div class="text-center my-2">
+                                                            <h5>Select Mode of quiz attempt : </h5>
+                                                        </div>
+                                                        <div class="float-left my-4 ml-5">
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="mode1" name="customMode" value="timeless" class="custom-control-input">
+                                                                <label class="custom-control-label" for="mode1">Free flow (Not timed)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="float-right my-4 mr-5">
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="mode2" name="customMode" value="timed" class="custom-control-input">
+                                                                <label class="custom-control-label" for="mode2">Timed</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="row start deactivated" style="width: 100%;">
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 my-4">
+                                                        <div class="question-number text-center">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12 my-4">
+                                                        <div class="question-options">
+                                                            <div class="questions my-3">
+                                                            </div>
+                                                            <div class="options">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Radio1" name="customOptions" class="custom-control-input">
+                                                                    <label class="custom-control-label quiz-label" for="Radio1"> Option 1</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Radio2" name="customOptions" class="custom-control-input">
+                                                                    <label class="custom-control-label quiz-label" for="Radio2">Option 2</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Radio3" name="customOptions" class="custom-control-input">
+                                                                    <label class="custom-control-label quiz-label" for="Radio3">Option 3</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input type="radio" id="Radio4" name="customOptions" class="custom-control-input">
+                                                                    <label class="custom-control-label quiz-label" for="Radio4">Option 4</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 my-3">
+                                                        <div class="float-left">
+                                                            <button type="button" class="previous-question btn btn-outline-secondary deactivated">
+                                                                <i class="fas fa-angle-double-left"></i> Previous
+                                                            </button>
+                                                        </div>
+                                                        <div class="float-right">
+                                                            <button type="button" class="next-question btn btn-outline-primary">
+                                                                 Next <i class="fas fa-angle-double-right"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row submit deactivated" style="width: 100%;">
+                                                    <div class="col-12 my-3">
+                                                        <div class="text-center my-4">
+                                                            <h3>{{ filename }} Quiz Attempt</h3>
+                                                        </div>
+                                                        <div class="text-center my-2">
+                                                            <h4>If you are done click the submit button, if you want to go back click on Previous button.</h4>
+                                                        </div>
+                                                        <div class="float-left my-4 ml-5">
+                                                            <button type="button" class="previous-question btn btn-outline-secondary deactivated">
+                                                                <i class="fas fa-angle-double-left"></i> Previous
+                                                            </button>
+                                                        </div>
+                                                        <div class="float-right my-4 mr-5">
+                                                            <div class="float-right">
+                                                                <button type="button" class="submit-answers btn btn-outline-primary">
+                                                                     Submit <i class="fas fa-angle-double-right"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="row result deactivated" style="width: 100%;">
+                                                    <div class="col-12 my-3">
+                                                        <div class="text-center my-4">
+                                                            <h3>{{ filename }} Quiz Attempt</h3>
+                                                        </div>
+                                                        <div class="text-center my-2">
+                                                            <h4><strong>QUIZ RESULT</strong>.</h4>
+                                                        </div>
+                                                        <div class="text-center my-2">
+                                                            <h5 class="start-timey"></h5>
+                                                            <h5 class="end-timey"></h5>
+                                                        </div>
+                                                        <div class="float-left my-3">
+                                                            <h5 class="score"></h5> 
+                                                        </div>
+                                                        <div class="float-right my-3">
+                                                            <h5 class="percentage"></h5> 
+                                                        </div>
+                                                        <div class="text-center mt-4">
+                                                            <h5 class="Comment"></h5> 
+                                                        </div>
+                                                        <div class="text-center my-2">
+                                                            <h5 class="Failed">
+                                                                <a href="#" class="failed-questions">
+                                                                    Click here to see failed questions and answers...
+                                                                </a>
+                                                            </h5>
+                                                            <ul class="failed-list deactivated"></ul> 
+                                                        </div>
+
+                                                        <div class="col-12 my-3 error text-center text-danger"></div>
+
+                                                        <div class="float-left my-4 ml-5">
+                                                            <button type="button" class="try-again btn btn-outline-danger">
+                                                                <i class="fas fa-redo"></i> Re Take Quiz
+                                                            </button>
+                                                        </div>
+                                                        {% if saved %}
+                                                        {% else %}
+                                                        <div class="float-right my-4 mr-5">
+                                                            <div class="float-right">
+                                                                <button type="button" data-url="{%url 'quiz:save_quiz' %}" data-id="{{qf.id}}" data-taken="true" data-name="{{qf.name}}" data-info="" class="savish btn btn-outline-primary">
+                                                                    <i class="far fa-save"></i> Save Quiz 
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                          <h2><i class="fas fa-location-arrow"></i><strong>Navigation Bar</strong></h2>
+                                          <div class="panel-actions">
+                                            <a href="#" id="2" class="btn-minimize"><i class="flip-2 fa fa-chevron-up"></i></a>
+                                          </div>
+                                        </div>
+                                        <div class="panel-body body-2">
+                                            <div class="container-fluid">
+                                                <div class="navis row" style="width: 100%;">
+                                                    
+                                                </div>
+                                                <div class="row timer my-4 deactivated" style="width: 100%;">
+                                                    <div class="col-12">
+                                                        <div id="clockdiv" class="text-center ml-4">
+                                                            <div>
+                                                              <span class="hours">24</span> :
+                                                            </div>
+                                                            <div>
+                                                              <span class="minutes">34</span> :
+                                                            </div>
+                                                            <div>
+                                                              <span class="seconds">34</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section id="modal-section">
+                <div class="modal fade" id="timerModal" tabindex="-1" aria-labelledby="timerModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="timerModalLabel">Enter Quiz Time</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="container">
+                              <div class="row">
+                                  <div class="col-12 error text-danger my-4 text-center"></div>
+                                  <div class="col-12 time-form">
+                                      <div class="form-group">
+                                        <input type="number" id="hour" class="form-control numy" value="0" min="0" >
+                                        <label for="hour">Hours</label>
+                                      </div>
+                                      <div class="form-group">
+                                        <input type="number" id="minute" class="form-control numy" value="0" min="0" >
+                                        <label for="minute">Minute</label>
+                                      </div>
+                                      <div class="form-group">
+                                        <input type="number" id="second" class="form-control numy" value="0" min="0" >
+                                        <label for="second">Seconds</label>
+                                      </div>
+                                      
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-outline-primary set-time"> <i class="far fa-clock"></i>Set </button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="QuizSummaryModal" tabindex="-1" role="dialog" aria-labelledby="QuizSummaryModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="QuizSummaryModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="quizy-part deactivated">
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 my-3 error text-center text-danger"></div>
+                                            <div class="col-12 text-center deactivated loading-quiz text-danger">
+                                                GENERATING QUIZ, PLEASE WAIT.......
+                                            </div>
+                                            <div class="col-12 quiz-summary deactivated">
+                                                <div class="float-left">
+                                                    <h5 class="words"></h5>
+                                                    <h5 class="binary"></h5>
+                                                    <h5 class="wh"></h5>
+                                                </div>
+                                                <div class="float-right">
+                                                    <h5 class="time-taken"></h5>
+                                                    <h5 class="fill-gaps"></h5>
+                                                    <h5 class="total-ques"></h5>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                  
+
+            </section>
+        </main>
+        <script>
+            var questionAnswer = {{ questions|safe }}
+        </script>
+
+{% endblock %}

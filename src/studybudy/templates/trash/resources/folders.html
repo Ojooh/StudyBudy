@@ -1,0 +1,87 @@
+                                                                <div class="my-notes-heading">
+                                                                <h2><i class="fas fa-folder"></i><strong>Folders</strong></h2>
+                                                                <div class="my-notes-filter">
+                                                                    <a href="#">
+                                                                        <p class="folder-filter-class">
+                                                                            {{ state.folder_filters }}
+                                                                        </p>
+                                                                    </a>
+                                                                    {% ifequal state.folder_order "ASC" %}
+                                                                    <a href="{% url 'notes:order_note' 'folder' %}"  class="order-folder">
+                                                                        <p class="folder-order">
+                                                                            <i class="fas fa-arrow-up"></i>
+                                                                        </p>
+                                                                    </a>
+                                                                    {% else %}
+                                                                    <a href="{% url 'notes:order_note' 'folder' %}" class="order-folder">
+                                                                        <p class="folder-order">
+                                                                            <i class="fas fa-arrow-down"></i>
+                                                                        </p>
+                                                                    </a> 
+                                                                    {% endifequal %}   
+                                                                </div>
+                                                                <ul class="filter-options-menu deactivated  option-folder-filter">
+                                                                <li class="filters-folder" data-url="{% url 'notes:filter_note' %}" data-hml="Name">
+                                                                    <i class=""></i><a href="#" class="folder-filt-1"> Name</a>
+                                                                </li>
+                                                                <li class="filters-folder" data-url="{% url 'notes:filter_note' %}" data-hml="Last Modified">
+                                                                    <i class=""></i><a href="#" class="folder-filt-2"> Last Modified</a>
+                                                                </li>
+                                                                <li class="filters-folder" data-url="{% url 'notes:filter_note' %}" data-hml="Last Opened">
+                                                                    <i class=""></i><a href="#" class="folder-filt-3"> Last Opened</a>
+                                                                </li>
+                                                                </ul>
+                                                                </div>
+                                                                <hr>
+
+                                                                <div class="my-notes-body">
+                                                                    <div class="container-fluid">
+                                                                        {% if folders %}
+
+                                                                        <div class="row">
+                                                                            {% for fld in folders %}
+                                                                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                                                                <div class="folder my-5">
+                                                                                    <a href="#">
+                                                                                        <h5 data-toggle="tooltip" data-placement="bottom" title="{{fld.name}}">
+                                                                                            <i class="fas fa-folder"></i> {{fld.name}}
+                                                                                        </h5>
+                                                                                        
+                                                                                        <div class="folds-options">
+                                                                                            <a href="#">
+                                                                                                <div id="fd-{{fld.id}}" class="options-icon-fd"></div>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </a>
+                                                                            
+                                                                                    <ul class="folder-options-menu fd-op-{{ fld.id}} deactivated">
+                                                                                        <li id="details-{{ fld.id }}" data-id="{{fld.id }}" data-name="{{ fld.name }}" data-type="{{ fld.file_type }}" class="details" data-url="{% url 'trash:details' %}">
+                                                                                            <a href="#">
+                                                                                                <i class="fas fa-info-circle"></i> Details
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li id="recycle-{{ fld.id }}" data-id="{{fld.id }}" data-name="{{ fld.name }}" data-type="{{ fld.file_type }}" class="recycle" data-url="{% url 'trash:recycle_list' %}">
+                                                                                            <a href="#">
+                                                                                                <i class="fas fa-trash-restore"></i> Restore
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li data-id="{{ fld.id }}" data-filename="{{ fld.name }}" data-type="{{ fld.file_type }}" data-url="{% url 'trash:delete_permanently' %}" class="delete-trigger">
+                                                                                            <a href="#" class="">
+                                                                                                <i class="far fa-trash-alt"></i> Delete Permanently
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            {% endfor %}
+                                                                        </div>
+
+                                                                        {% else %}
+                                                                        <div class="row">
+                                                                            <div class="col-12 my-5">
+                                                                                <h6 class="text-center text-danger">NO FOLDERS AVAILABLE</h6>
+                                                                            </div>
+                                                                        </div>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>

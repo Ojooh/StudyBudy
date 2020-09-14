@@ -1,0 +1,75 @@
+{% extends "base/reminder_base.html" %}
+{% load static %}
+{%  block content %}
+
+        <main>
+            {% include 'resources/sidebar.html' %}
+
+            <section id="main-content">
+                <section class="wrapper">
+                    <div class="content">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="page-header mb-4"><i class="far fa-sticky-note"></i> Reminder</h3>
+                                </div>
+
+                                <div class="col-12">
+                                    <ol class="breadcrumb bg-light-mode">
+                                        <li class="breadcrumb-item"><a href="{% url 'notes:index' %}">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <a href="{% url 'reminder:task_list' %}">
+                                                <i class="far fa-sticky-note"></i> Reminder
+                                            </a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            {% if form.instance.id %}
+                                                <i class="fas fa-pencil-alt"></i> Edit Task Appointment
+                                            {% else %}
+                                                <i class="fas fa-plus-square"></i> Set New Task Appointment
+                                            {% endif %}
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="task-form col-12 mt-4">
+                                    {% if form.errors %}
+                                        <div class="col-md-12 mb-3 text-center text-danger">{{ form.errors }}</div>
+                                    {% endif %}
+                                    <form class="form-horizontal" id="taskForm" role="form" data-task="{{ task }}"" data-date="{{ date_scheduled }}" data-time="{{ time }}" action="" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-row">
+                                            {% for field in form %}
+                                                <div class="form-group col-{{ field.field.widget.attrs.col }}">   
+                                                    {{ field.label_tag }}
+                                                    {{field}}
+                                                    
+                                                    <div class="text-danger">
+                                                        {{ field.errors }}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+    
+
+                                            
+                                            <div class="form-group col-12">
+                                                <div class="float-right">
+                                                    <button type="submit" class="btn btn-primary">Save <i class="fas fa-save"></i></button>
+                                                    <a href="{% url 'reminder:task_list' %}" class="btn btn-outline-primary">Cancel <i class="fas fa-window-close"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+        </main>
+{% endblock %}

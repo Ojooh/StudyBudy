@@ -1,0 +1,240 @@
+[
+    {
+        "Answer": "a type of computation in which many calculations or the execution of processes are carried outsimultaneously  ?",
+        "Full_qus": "What is Parallel Computing   ?",
+        "options": [
+            "a type of computation in which many calculations or the execution of processes are carried outsimultaneously  ?",
+            "a antitype of computation in which many calculations or the execution of processes are carried outsimultaneously  ?",
+            "a hallstattian of computation in which many calculations or the execution of processes are carried outsimultaneously  ?",
+            "a izzard of computation in which many calculations or the execution of processes are carried outsimultaneously  ?",
+            "a superglottic of computation in which many calculations or the execution of processes are carried outsimultaneously  ?",
+            "a typecast of computation in which many calculations or the execution of processes are carried outsimultaneously  ?"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "is parallel computing a type of computation in which many calculations or the execution of processes are carried outsimultaneously  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "ones",
+        "Full_qus": "1 large problems can often be divided into smaller __________ which can then be solved at the same time  ?",
+        "options": [
+            "unity",
+            "tetanically",
+            "ace",
+            "ones",
+            "1",
+            "schlesien"
+        ]
+    },
+    {
+        "Answer": "forms",
+        "Full_qus": "there areseveral different __________ of parallel computing bitlevel instructionlevel data  ?",
+        "options": [
+            "form",
+            "izzard",
+            "configuration",
+            "noncustomary",
+            "forms",
+            "nonmicroscopicalredbone"
+        ]
+    },
+    {
+        "Answer": "consumption",
+        "Full_qus": "parallelism has long beenemployed in highperformance computing  ?",
+        "options": [
+            "use_of_goods_and_services",
+            "consumption",
+            "use",
+            "unencounterable",
+            "doxographer",
+            "uptake",
+            "superglottic"
+        ]
+    },
+    {
+        "Answer": "closely related to concurrent computingthey are frequently used together  ?",
+        "Full_qus": "What is Parallel Computing   ?",
+        "options": [
+            "closely related to concurrent oftenness are frequently used together  ?",
+            "closely related to concurrent computingthey are frequently used together  ?",
+            "closely related to concurrent monotron are frequently used together  ?",
+            "closely related to concurrent sonorously are frequently used together  ?",
+            "closely related to concurrent titillated are frequently used together  ?",
+            "closely related to concurrent sesquialtera are frequently used together  ?"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "is parallel computing closely related to concurrent computingthey are frequently used together  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "typically broken downinto several often many very similar subtasks that can be processed independently  ?",
+        "Full_qus": "What is In Parallel Computing A Computational Task   ?",
+        "options": [
+            "typically broken oftenness several often many very similar subtasks that can be processed independently  ?",
+            "typically broken noncustomary several often many very similar subtasks that can be processed independently  ?",
+            "typically broken downinto several often many very similar subtasks that can be processed independently  ?",
+            "typically broken sonorously several often many very similar subtasks that can be processed independently  ?",
+            "typically broken consubstantiated several often many very similar subtasks that can be processed independently  ?",
+            "typically broken sesquialtera several often many very similar subtasks that can be processed independently  ?"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "is in parallel computing a computational task typically broken downinto several often many very similar subtasks that can be processed independently  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "task",
+        "Full_qus": "in parallel computing a computational __________ is typically broken downinto several often many very similar subtasks that can be processed independently  ?",
+        "options": [
+            "task",
+            "vaccinate",
+            "nonmicroscopicalredbone",
+            "tax",
+            "doxographer",
+            "project",
+            "impermissible"
+        ]
+    },
+    {
+        "Answer": "execution",
+        "Full_qus": "in contrast in concurrent computing the various processes often do not address related tasks when related tasks do as istypical in distributed computing the separate tasks may have a varied nature  ?",
+        "options": [
+            "carrying_out",
+            "grassiness",
+            "execution",
+            "impermissible",
+            "capital_punishment",
+            "tetanically"
+        ]
+    },
+    {
+        "Answer": "clusters",
+        "Full_qus": "parallel computers can be roughly classified according to the level at which the hardware supports parallelism with multicore  ?",
+        "options": [
+            "bunch",
+            "superglottic",
+            "clusters",
+            "izzard",
+            "vaccinate",
+            "flock"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "are specialized parallel computer architectures sometimes misused alongside traditionalprocessors for accelerating specific tasks  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "computer",
+        "Full_qus": "specialized parallel __________ architectures are sometimes used alongside traditionalprocessors for accelerating specific tasks  ?",
+        "options": [
+            "computing_machine",
+            "unencounterable",
+            "computer",
+            "schlesien",
+            "electronic_computer",
+            "coak"
+        ]
+    },
+    {
+        "Answer": "transparent to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+        "Full_qus": "What is In Some Cases Parallelism   ?",
+        "options": [
+            "gauzy to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+            "grassiness to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+            "transparent to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+            "vaccinate to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+            "diaphanous to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+            "monotron to the programmer such as in bitlevel or instructionlevel parallelism  ?"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "is in some cases parallelism transparent to the programmer such as in bitlevel or instructionlevel parallelism  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "parallelism",
+        "Full_qus": "in some cases __________ is transparent to the programmer such as in bitlevel or instructionlevel __________  ?",
+        "options": [
+            "parallelism",
+            "izzard",
+            "correspondence",
+            "vaccinate",
+            "schlesien",
+            "superglottic"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "are communication  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "subtasks",
+        "Full_qus": "communication  ?",
+        "options": [
+            "oftenness",
+            "hallstattian",
+            "doxographer",
+            "superglottic",
+            "subtasks",
+            "unencounterable"
+        ]
+    },
+    {
+        "Answer": "given by amdahls law  ?",
+        "Full_qus": "What is A Theoretical Upper Bound On The Speedup Of A Single Program As A Result Of Parallelization   ?",
+        "options": [
+            "given by amdahls law  ?",
+            "given by coak law  ?",
+            "given by izzard law  ?",
+            "given by unencounterable law  ?",
+            "given by tetanically law  ?",
+            "given by impermissible law  ?"
+        ]
+    },
+    {
+        "Answer": "True",
+        "Full_qus": "is a theoretical upper bound on the speedup of a single program as a result of parallelization given by amdahls law  ?",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "Answer": "result",
+        "Full_qus": "a theoretical upper bound on the speedup of a single program as a __________ of parallelization is given by amdahls law  ?",
+        "options": [
+            "outcome",
+            "noncustomary",
+            "leave",
+            "izzard",
+            "result",
+            "doxographer"
+        ]
+    }
+]

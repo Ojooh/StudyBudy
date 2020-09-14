@@ -1,0 +1,157 @@
+                                                                    {% if folders %}
+                                                                    <div class="row">
+                                                                        <div class="col-12 tableau table-responsive my-3">
+                                                                            <table class="table table-hover my-5">
+                                                                                <thead>
+                                                                                  <tr>
+                                                                                    <th class="pb-3" scope="col">
+                                                                                        Name 
+                                                                                        {% ifequal state.folder_order "ASC" %}
+                                                                                        <a href="{% url 'notes:order_note' 'folder' %}"  class="order-folder">
+                                                                                            <i class="order-folder fas fa-arrow-up" data-hml="DESC" data-toggle="tooltip" data-placement="bottom" title="Reverse sort Direction"></i>
+                                                                                        </a>
+                                                                                           
+                                                                                        {% else %}
+                                                                                        <a href="{% url 'notes:order_note' 'folder' %}"  class="order-folder">
+                                                                                            <i class="order-folder fas fa-arrow-down" data-hml="ASC" data-toggle="tooltip" data-placement="bottom" title="Reverse sort Direction"></i>
+                                                                                        </a>
+                                                                                        {% endifequal %}
+                                                                                        
+                                                                                    </th>
+                                                                                    <th class="pb-4" scope="col">Owner</th>
+                                                                                    <th class="pb-4" scope="col">Size</th>
+                                                                                    <th class="pb-3" scope="col">
+                                                                                        <div class="drop">
+                                                                                            <a class="drop-trigger-1">
+                                                                                                <span class="table-filter-mode">{{ state.folder_filters }}</span> <i class="fas fa-caret-down"></i>
+                                                                                            </a>
+                                                                                            <div class="drop-menu folder-Drop deactivated">
+                                                                                                <ul class="">
+                                                                                                    <li class="tab filters-folder dropdown-item" data-url="{% url 'notes:filter_note' %}" data-hml="Last Modified">
+                                                                                                        <i class=""></i><a href="#" class="folder-filt-2"> Last Modified</a>
+                                                                                                    </li>
+                                                                                                    <li class="tab filters-folder dropdown-item" data-url="{% url 'notes:filter_note' %}" data-hml="Last Opened">
+                                                                                                        <i class=""></i><a href="#" class="folder-filt-3"> Last Opened</a>
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </th>
+                                                                                    <th class="pb-4" scope="col">Options</th>
+                                                                                  </tr>
+                                                                                </thead>
+                                                                                
+                                                                                <tbody>
+                                                                                {% for fld in folders %}
+                                                                                  <tr>
+                                                                                        <th>
+                                                                                            <a href="{% url 'notes:folder_content' fld.id %}" class="fldr">
+                                                                                                <i class="fas fa-folder"></i> {{fld.name}}
+                                                                                            </a>
+                                                                                        </th>
+                                                                                    {% ifequal fld.owner request.user %}
+                                                                                        <th class="fldr">Me</th>
+                                                                                    {% else %}
+                                                                                        <th class="fldr">{{ fld.owner }}</th>
+                                                                                    {% endifequal %}
+                                                                                        <th class="fldr szl"> {{ fld.size }}</th>
+                                                                                    {% ifequal folt "last_opened" %}
+                                                                                    {% if fld.last_opened is not None %}
+                                                                                        <th class="fldr">{{fld.last_opened}}</th>
+                                                                                    {% else %}
+                                                                                        <th class="fldr">Never</th>
+                                                                                {% endif %}
+                                                                                    {% endifequal %}
+                                                                                    {% ifequal folt "last_editted" %}
+                                                                                    {% if fld.last_editted is not None %}
+                                                                                        <th class="fldr">{{fld.last_editted}}</th>
+                                                                                    {% else %}
+                                                                                        <th class="fldr">Never</th>
+                                                                                    {% endif %}
+                                                                                    {% endifequal %}
+                                                                                    <th>
+                                                                                        <div class="drop">
+                                                                                            {% if fld.starred %}
+                                                                                            <a class="fl star" data-value="False-{{ fld.id }}" data-url="{% url 'notes:star_file' %}">
+                                                                                                
+                                                                                                    <i class="fas fa-star"></i>
+                                                                                                
+                                                                                            </a>
+                                                                                            {% else %}
+                                                                                            <a class="fl star" data-value="True-{{ fld.id }}" data-url="{% url 'notes:star_file' %}">
+                                                                                                
+                                                                                                    <i class="far fa-star"></i>
+                                                                                                
+                                                                                            </a>
+                                                                                            {% endif %}
+
+                                                                                            <a id="fd-{{fld.id}}" class="drop-trigger-options">
+                                                                                                <i class="fas fa-ellipsis-h"></i>
+                                                                                            </a>
+                                                                                            {% ifequal fld.owner request.user %}
+                                                                                            <div class="drop-meny opy-{{ fld.id}} deactivated">
+                                                                                                <li id="{{fld.id}}" data-name="{{fld.name}}" data-description="{{fld.description}}" class="rename-folder">
+                                                                                                    <a href="#"><i class="fas fa-text-height"></i> Rename</a>
+                                                                                                </li>
+                                                                                                <li id="share-{{fld.id}}" data-id="{{fld.id}}" data-name="{{fld.name}}" class="share-file">
+                                                                                                    <a href="#">
+                                                                                                        <i class="fas fa-share-alt"></i> share
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                                <li id="details-{{ fld.id }}" data-id="{{fld.id }}" data-name="{{ fld.name }}" class="details" data-url="{% url 'notes:details' %}">
+                                                                                                    <a href="#">
+                                                                                                        <i class="fas fa-info-circle"></i> Details
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                                <li data-id="{{ fld.id }}" data-url="{% url 'notes:move_list' %}" class="move-list">
+                                                                                                    <a href="#">
+                                                                                                        <i class="fas fa-arrow-right"></i> Move
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                                
+                                                                                                <li data-id="{{ fld.id }}" data-filename="{{ fld.name }}" data-url="{% url 'notes:delete_file' %}" class="delete-trigger">
+                                                                                                    <a href="#" class="">
+                                                                                                        <i class="far fa-trash-alt"></i> Delete
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                                
+                                                                                                <li>
+                                                                                                    {% if fld.public %}
+                                                                                                    <div class="custom-control custom-switch" data-url="{% url 'notes:ajax_change_public' %}">
+                                                                                                        <input type="checkbox" class="custom-control-input" id="customSwitch-{{ fld.id }}" value="False-{{ fld.id }}" checked>
+                                                                                                        <label class="custom-control-label" for="customSwitch-{{ fld.id }}"><i class="fas fa-globe"></i> Public</label>
+                                                                                                    </div>
+                                                                                                    {% else %}
+                                                                                                    <div class="custom-control custom-switch" data-url="{% url 'notes:ajax_change_public' %}">
+                                                                                                        <input type="checkbox" class="custom-control-input" id="customSwitch-{{ fld.id }}" value="True-{{ fld.id }}">
+                                                                                                        <label class="custom-control-label" for="customSwitch-{{ fld.id }}"><i class="fas fa-globe"></i> Public</label>
+                                                                                                    </div>
+                                                                                                    {% endif %}
+                                                                                                </li>
+                                                                                            </div>
+                                                                                            {% else %}
+                                                                                            <div class="drop-meny opy-{{ fld.id}} deactivated">
+                                                                                                
+                                                                                                <li id="details-{{ fld.id }}" data-id="{{fld.id }}" data-name="{{ fld.name }}" class="details" data-url="{% url 'notes:details' %}">
+                                                                                                    <a href="#">
+                                                                                                        <i class="fas fa-info-circle"></i> Details
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                            </div>
+                                                                                            {% endifequal %}
+                                                                                        </div>
+                                                                                    </th>
+                                                                                    
+                                                                                  </tr>
+                                                                                {% endfor %}
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    {% else %}
+                                                                    <div class="row">
+                                                                        <div class="col-12 my-5">
+                                                                            <h6 class="text-center text-danger">No Folders Available</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                    {% endif %}
